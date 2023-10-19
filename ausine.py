@@ -267,12 +267,14 @@ if (__name__ == '__main__'):
 	_ = CreateAndConnectOutputUnit(player)
 
 	# Play sound for 5 seconds
-	err = c.AudioOutputUnitStart(player.outputUnit)
-	CheckError(err, "Couldn't start output unit")
-	sleep(5)
+	try:
+		err = c.AudioOutputUnitStart(player.outputUnit)
+		CheckError(err, "Couldn't start output unit")
+		sleep(5)
 
 	# Clean up
-	c.AudioOutputUnitStop(player.outputUnit)
-	c.AudioUnitUninitialize(player.outputUnit)
-	c.AudioComponentInstanceDispose(player.outputUnit)
+	finally:
+		c.AudioOutputUnitStop(player.outputUnit)
+		c.AudioUnitUninitialize(player.outputUnit)
+		c.AudioComponentInstanceDispose(player.outputUnit)
 
