@@ -1,6 +1,6 @@
 # ausine.py
 
-# Building an Audio Unit in Python with ctypes.
+# Building an Audio Unit in Python with ctypes on iOS.
 
 # Created in Pythonista on iPad 2 running iOS 9.
 
