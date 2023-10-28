@@ -25,6 +25,9 @@ from ctypes import (
 c = cdll.LoadLibrary(None)
 
 
+# Subclass void pointer
+# to disable automatic conversion to None
+# when accessed as struct member
 class raw_c_void_p(c_void_p):
 	pass
 
