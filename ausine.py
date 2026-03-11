@@ -104,26 +104,26 @@ class AudioStreamBasicDescription(Structure):
 # --- Core Audio functions
 
 AudioComponentFindNext = c.AudioComponentFindNext
+AudioComponentFindNext.restype = c_void_p
 AudioComponentFindNext.argtypes = [
 	c_void_p, POINTER(AudioComponentDescription)]
-AudioComponentFindNext.restype = c_void_p
 
 AudioComponentInstanceNew = c.AudioComponentInstanceNew
-c.AudioComponentInstanceNew.argtypes = [c_void_p, c_void_p]
 c.AudioComponentInstanceNew.restype = OSStatus
+c.AudioComponentInstanceNew.argtypes = [c_void_p, c_void_p]
 
 AudioUnitSetProperty = c.AudioUnitSetProperty
+AudioUnitSetProperty.restype = OSStatus
 AudioUnitSetProperty.argtypes = [
 	c_void_p, c_uint32, c_uint32, c_uint32, c_void_p, c_uint32]
-AudioUnitSetProperty.restype = OSStatus
 
 AudioUnitInitialize = c.AudioUnitInitialize
-AudioUnitInitialize.argtypes = [c_void_p]
 AudioUnitInitialize.restype = OSStatus
+AudioUnitInitialize.argtypes = [c_void_p]
 
 AudioOutputUnitStart = c.AudioOutputUnitStart
-AudioOutputUnitStart.argtypes = [c_void_p]
 AudioOutputUnitStart.restype = OSStatus
+AudioOutputUnitStart.argtypes = [c_void_p]
 
 c.AudioOutputUnitStop.argtypes = [c_void_p]
 
@@ -133,6 +133,7 @@ c.AudioComponentInstanceDispose.argtypes = [c_void_p]
 
 
 # --- Callback function prototype
+res = OSStatus
 arg = [
 	c_void_p,
 	POINTER(AudioUnitRenderActionFlags),
@@ -140,7 +141,6 @@ arg = [
 	c_uint32,
 	c_uint32,
 	POINTER(AudioBufferList)]
-res = OSStatus
 AURenderCallback = CFUNCTYPE(res, *(arg))
 
 
