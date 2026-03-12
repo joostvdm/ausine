@@ -103,27 +103,22 @@ class AudioStreamBasicDescription(Structure):
 
 # --- Core Audio functions
 
-AudioComponentFindNext = c.AudioComponentFindNext
-AudioComponentFindNext.restype = c_void_p
-AudioComponentFindNext.argtypes = [
+c.AudioComponentFindNext.restype = c_void_p
+c.AudioComponentFindNext.argtypes = [
 	c_void_p, POINTER(AudioComponentDescription)]
 
-AudioComponentInstanceNew = c.AudioComponentInstanceNew
 c.AudioComponentInstanceNew.restype = OSStatus
 c.AudioComponentInstanceNew.argtypes = [c_void_p, c_void_p]
 
-AudioUnitSetProperty = c.AudioUnitSetProperty
-AudioUnitSetProperty.restype = OSStatus
-AudioUnitSetProperty.argtypes = [
+c.AudioUnitSetProperty.restype = OSStatus
+c.AudioUnitSetProperty.argtypes = [
 	c_void_p, c_uint32, c_uint32, c_uint32, c_void_p, c_uint32]
 
-AudioUnitInitialize = c.AudioUnitInitialize
-AudioUnitInitialize.restype = OSStatus
-AudioUnitInitialize.argtypes = [c_void_p]
+c.AudioUnitInitialize.restype = OSStatus
+c.AudioUnitInitialize.argtypes = [c_void_p]
 
-AudioOutputUnitStart = c.AudioOutputUnitStart
-AudioOutputUnitStart.restype = OSStatus
-AudioOutputUnitStart.argtypes = [c_void_p]
+c.AudioOutputUnitStart.restype = OSStatus
+c.AudioOutputUnitStart.argtypes = [c_void_p]
 
 c.AudioOutputUnitStop.argtypes = [c_void_p]
 
