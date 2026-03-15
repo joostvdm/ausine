@@ -22,6 +22,7 @@ from ctypes import (
 	cast, cdll, memmove, pointer, py_object, sizeof,
 	CFUNCTYPE, POINTER, Structure)
 
+# Object for calling C functions
 c = cdll.LoadLibrary(None)
 
 
