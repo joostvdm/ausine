@@ -45,7 +45,7 @@ OSType = c_uint32
 
 def StringToOSType(s):
 	x = int.from_bytes(bytes(s, 'ascii'), byteorder='big')
-	return(OSType(x))
+	return OSType(x)
 
 
 # --- Core Audio constants
