@@ -162,26 +162,26 @@ def SineWaveRenderProc(
 	inBusNumber: c_uint32,
 	inNumberFrames: c_uint32,
 	ioData: POINTER(AudioBufferList)
-	) -> OSStatus:
+) -> OSStatus:
 
-		# Generate tone to demonstrate functionality
-		player = cast(inRefCon, POINTER(py_object)).contents.value
-		cycleLength = sampleRate / sineFrequency
-		j = player.startingFrameCount
-		jarr = np.zeros(inNumberFrames, dtype=np.float32)
-		for frame in range(inNumberFrames):
-			jarr[frame] = j
-			j = j + 1.0
-			if (j > cycleLength):
-				j = j - cycleLength
-		amplitude = 0.25
-		sine = amplitude * np.sin(2.0 * np.pi * (jarr / cycleLength))
-		memmove(
-			ioData[0].mBuffers[0].mData,
-			sine.ctypes.data,
-			inNumberFrames * sizeof(c_float))
-		player.startingFrameCount = j
-		return noErr
+	# Generate tone to demonstrate functionality
+	player = cast(inRefCon, POINTER(py_object)).contents.value
+	cycleLength = sampleRate / sineFrequency
+	j = player.startingFrameCount
+	jarr = np.zeros(inNumberFrames, dtype=np.float32)
+	for frame in range(inNumberFrames):
+		jarr[frame] = j
+		j = j + 1.0
+		if (j > cycleLength):
+			j = j - cycleLength
+	amplitude = 0.25
+	sine = amplitude * np.sin(2.0 * np.pi * (jarr / cycleLength))
+	memmove(
+		ioData[0].mBuffers[0].mData,
+		sine.ctypes.data,
+		inNumberFrames * sizeof(c_float))
+	player.startingFrameCount = j
+	return noErr
 
 
 # --- Error check function
